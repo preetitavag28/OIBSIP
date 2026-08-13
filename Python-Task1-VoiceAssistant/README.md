@@ -1,46 +1,46 @@
-# OASIS Infobyte Voice Assistant
+# 🎙️ OASIS Infobyte Voice Assistant
 
-## Project Overview
+A Python-based voice assistant developed as part of the **OASIS Infobyte Python Programming Internship – Task 1**.
 
-This project is a Python-based voice assistant developed as part of the OASIS Infobyte Python Programming Internship.
+The assistant listens to voice commands, converts speech to text, performs useful actions, and responds using text-to-speech.
 
-The assistant listens to spoken commands, converts speech to text, performs useful actions, and responds using text-to-speech.
+## ✨ Features
 
-## Features
+### Beginner Features
 
-### Beginner Tier
+* 🎤 Voice input using `SpeechRecognition`
+* 🔊 Text-to-speech responses using `pyttsx3`
+* 👋 Responds to "Hello"
+* 🕐 Tells the current time
+* 📅 Tells the current date
+* 🌐 Performs web searches using the default browser
+* ❌ Handles speech recognition errors gracefully
 
-* Voice input using SpeechRecognition
-* Greeting response for "Hello"
-* Current time
-* Current date
-* Web search using the user's spoken topic
-* Error handling when speech is not understood
-* Text-to-speech responses using pyttsx3
+### Advanced Features
 
-### Advanced Tier
+* 🌦️ Real-time weather information using OpenWeatherMap API
+* 📧 Send emails using SMTP
+* ⏰ Set timed reminders with audible alerts
+* 🧠 Basic natural-language command handling
+* ⚙️ Custom commands using a JSON configuration file
+* 🔐 API credentials stored securely using environment variables
 
-* Weather information using OpenWeatherMap API
-* Email sending using SMTP
-* Timed voice reminders
-* Custom commands using a JSON configuration file
-* Secure API and email credentials using environment variables
-
-## Technologies Used
+## 🛠️ Technologies Used
 
 * Python 3.14
 * SpeechRecognition
-* SoundDevice
-* NumPy
 * pyttsx3
 * Requests
 * python-dotenv
+* SoundDevice
 * OpenWeatherMap API
 * SMTP
 * JSON
+* Webbrowser
+* Datetime
 * Threading
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
 Python-Task1-VoiceAssistant/
@@ -48,56 +48,102 @@ Python-Task1-VoiceAssistant/
 ├── assistant.py
 ├── weather.py
 ├── email_sender.py
-├── test_weather.py
-├── test_email.py
-├── test_microphone.py
-├── test_speech.py
-├── test_speaker.py
+├── reminder.py
 ├── commands.json
-├── .env
-├── .gitignore
-└── README.md
+│
+├── test_microphone.py
+├── test_speaker.py
+├── test_speech.py
+├── test_weather.py
+├── test_weather_key.py
+├── test_email.py
+├── test_reminder.py
+│
+├── README.md
+└── .gitignore
 ```
 
-## How to Run
+## ⚙️ Installation
 
-### 1. Create and activate the virtual environment
+### 1. Clone the repository
 
-```powershell
+```bash
+git clone https://github.com/preetitavag28/OIBSIP.git
+```
+
+### 2. Open the project folder
+
+```bash
+cd OIBSIP/Python-Task1-VoiceAssistant
+```
+
+### 3. Create a virtual environment
+
+```bash
 python -m venv .venv
 ```
 
-Activate it:
+### 4. Activate the virtual environment
+
+Windows PowerShell:
 
 ```powershell
 .venv\Scripts\Activate.ps1
 ```
 
-### 2. Install dependencies
+### 5. Install dependencies
 
-```powershell
-python -m pip install --no-cache-dir SpeechRecognition pyttsx3 requests python-dotenv sounddevice numpy
+```bash
+pip install SpeechRecognition pyttsx3 requests python-dotenv sounddevice numpy
 ```
 
-### 3. Configure environment variables
+## 🔐 Environment Variables
 
-Create a `.env` file:
+Create a `.env` file inside the `Python-Task1-VoiceAssistant` folder.
 
-```text
-WEATHER_API_KEY=your_weather_api_key
-EMAIL_ADDRESS=your_email@gmail.com
+Add your API credentials:
+
+```env
+OPENWEATHER_API_KEY=your_openweather_api_key
+
+EMAIL_ADDRESS=your_email@example.com
 EMAIL_PASSWORD=your_email_app_password
 ```
 
-Never upload the `.env` file to GitHub.
+**Do not upload `.env` to GitHub.**
 
-### 4. Run the assistant
+The `.gitignore` file is configured to prevent sensitive credentials from being committed.
 
-```powershell
-python assistant.py
-```
+## 🌦️ Weather API
 
-## Example Voice Commands
+The project uses the **OpenWeatherMap API** to retrieve current weather information.
+
+The weather feature can provide:
+
+* Temperature in Celsius
+* Temperature in Fahrenheit
+* Humidity
+* Weather condition
+* Wind speed
+* City information
+
+## 📧 Email Feature
+
+The assistant can send an email using SMTP.
+
+For Gmail, an **App Password** should be used instead of your normal Gmail password.
+
+Never store your real password directly in Python source code.
+
+## ⏰ Reminder Feature
+
+The assistant supports timed reminders.
+
+A reminder waits for the specified duration and then provides an audible notification.
+
+## 🎤 Example Voice Commands
+
+You can say:
 
 ```text
 Hello
@@ -110,47 +156,108 @@ Search Python programming
 
 What is the weather in Belagavi?
 
-Set a reminder for 10 seconds to drink water
-
-Open YouTube
+Set a reminder
 
 Send an email
 
 Goodbye
 ```
 
-## Privacy Considerations
+## ▶️ Running the Assistant
 
-The application processes microphone audio only when the user activates the listening function.
+Activate the virtual environment and run:
 
-Speech is converted to text using the speech recognition service.
+```bash
+python assistant.py
+```
 
-The application uses an external weather API when the user requests weather information.
+The assistant will start listening for voice commands.
 
-Email credentials and API keys are stored in environment variables and are not hard-coded in the source code.
+## 🧪 Testing
 
-The `.env` file should not be shared publicly or committed to GitHub.
+Individual components can be tested separately.
 
-## Error Handling
+### Test microphone
 
-The assistant handles:
+```bash
+python test_microphone.py
+```
 
-* Unrecognized speech
-* Speech recognition service errors
-* Microphone errors
-* Invalid weather API keys
-* Invalid city names
-* Weather network timeouts
-* Missing email credentials
-* Email authentication failures
-* Invalid custom command configuration
+### Test speaker
 
-## Internship Task
+```bash
+python test_speaker.py
+```
 
-**Organization:** OASIS Infobyte
+### Test speech recognition
+
+```bash
+python test_speech.py
+```
+
+### Test weather
+
+```bash
+python test_weather.py
+```
+
+### Test email
+
+```bash
+python test_email.py
+```
+
+### Test reminder
+
+```bash
+python test_reminder.py
+```
+
+## 🔒 Privacy & Security
+
+This project processes spoken commands through the speech-recognition service used by the application.
+
+API keys and email credentials are stored in environment variables rather than directly in the source code.
+
+The `.env` file should never be committed or shared publicly.
+
+## 🎯 Internship Task
+
+**Program:** OASIS Infobyte Internship
 
 **Track:** Python Programming
 
-**Task:** Task 1 - Voice Assistant
+**Task:** Task 1 – Voice Assistant
 
 **Developer:** Preeti Tavag
+
+## 📌 Learning Outcomes
+
+Through this project, I practiced:
+
+* Python programming
+* Speech recognition
+* Text-to-speech systems
+* API integration
+* Environment variables
+* SMTP email integration
+* File-based configuration
+* Exception handling
+* Threading and timers
+* Git and GitHub
+* Building and testing a Python application
+
+## 🚀 Future Improvements
+
+Possible improvements include:
+
+* More natural language understanding
+* Additional voice commands
+* More API integrations
+* Improved conversation handling
+* GUI interface
+* Additional smart assistant features
+
+---
+
+⭐ Developed as part of the OASIS Infobyte Python Programming Internship.
